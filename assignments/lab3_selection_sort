@@ -1,0 +1,32 @@
+import random # imports random to shuffle prime numbers
+import array # imports array data structure
+
+def is_prime(n): # checks if number is prime
+    if n < 2: # any number less than 2 is not prime
+        return False # returns false for non-prime numbers
+    for i in range(2, int(n**0.5) + 1): # loop through possible divisiors up to the square root of n
+        if n % i == 0: # if n is divisible by an i, it;s not prime.
+            return False # if number is divisible = not prime
+        return True # if no divisor was found = is prime
+
+def selection_sort(arr):
+    for i in range(len(arr)): # loops througha array
+        min_index = i # minimum element
+        for j in range(i + 1, len(arr)): # finds minimum lement in unsorted
+            if arr[j] < arr[min_index]: # if smaller element is found
+                min_index = j # updates the index of minimum
+
+prime_list = [x for x in range(2,101) if is_prime(x)] # generates list of 1- 100 prime numbers
+
+prime_array = array.array('i', prime_list) # converts prime list to array of integers
+
+rnd_prime = array.array('i', random.sample(prime_array, len(prime_array))) # shuffles and stores in rnd_prime
+
+selection_sort(rnd_prime)
+
+print('sorted prime numbers (Array):', rnd_prime)
+
+# array data structures are a better choice over a list data structure because it has a faster performance,
+# more consistent data types, and especially more memory efficiency for larger-scale data.
+# it makes it more ideal for numerical calculations and operations than list but lists are more flexible since
+# they can store different other kinds of data but does have the other attributes that arrays have.
